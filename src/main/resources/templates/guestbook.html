@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Guestbook</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}" type="text/css" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0m mininum-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>Simple Guestbook</h1>
+    </header>
+
+    <br>
+
+    <tbody th:each="book : ${guestbook}">
+        <div class="box-container">
+            <div class="box box-max">
+                <p><strong><span th:text="${book.message}"></span></strong></p>
+                <p>Name: <strong><span th:text="${book.name}"></span></strong></p>
+                <p>Date: <span th:text="${book.date}"></span></p>
+            </div>
+        </div>
+
+        <br>
+    </tbody>
+    
+    <form action="#" th:action="@{/guestbook}" th:object="${form}" method="post">
+        <div class="box-container ">
+            <div class="box-max">
+                <p><strong>Message</strong></p>
+                <p><textarea class="box" rows="7" cols="100" style="max-width: 100%;" th:placeholder="Message" th:field="*{message}" required></textarea></p>
+
+                <p><strong>Name</strong></p>
+                <p><input class="box name-max" th:placeholder="Name" th:field="*{name}" required/>
+                
+                <p><input class="box submit" type="submit" id="submitButton" th:value="Submit"></p>
+            </div>
+        </div>
+    </form>
+
+</body>
